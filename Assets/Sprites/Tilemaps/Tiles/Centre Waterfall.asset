@@ -10,7 +10,7 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 13b75c95f34a00d4e8c04f76b73312e6, type: 3}
-  m_Name: Waterfall
+  m_Name: Centre Waterfall
   m_EditorClassIdentifier: 
   m_AnimatedSprites:
   - {fileID: 21300000, guid: feef05e5c7b6b2245aae011d6a893139, type: 3}

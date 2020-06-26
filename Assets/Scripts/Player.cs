@@ -30,13 +30,14 @@ public class Player : MonoBehaviour
     private void Movement()
     {
         float move = Input.GetAxisRaw("Horizontal");
+
         if (move > 0)
         {
-            playerSprite.flipX = false;
+            Flip(false);
         }
         else if (move < 0)
         {
-            playerSprite.flipX = true;
+            Flip(true);
         }
 
         if (Input.GetKeyDown(KeyCode.Space) && grounded == true)
@@ -49,6 +50,18 @@ public class Player : MonoBehaviour
 
         rigid.velocity = new Vector2(move * speed, rigid.velocity.y);
         playerAnim.Move(move);
+    }
+
+    private void Flip(bool faceRight)
+    {
+        if (!faceRight)
+        {
+            playerSprite.flipX = false;
+        }
+        else if (faceRight)
+        {
+            playerSprite.flipX = true;
+        }
     }
 
     private void CheckGrounded()

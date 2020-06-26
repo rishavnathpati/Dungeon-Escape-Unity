@@ -8,6 +8,8 @@ public class Player : MonoBehaviour
     private readonly float jumpForce = 5f;
     public bool grounded = false;
     private bool resetJumpNeeded = false;
+    [SerializeField]
+    private float speed = 2.5f;
 
     private void Start()
     {
@@ -16,7 +18,14 @@ public class Player : MonoBehaviour
 
     private void Update()
     {
+        Movement();
+        CheckGrounded();
+    }
+
+    private void Movement()
+    {
         float move = Input.GetAxisRaw("Horizontal");
+        rigid.velocity = new Vector2(move * speed, rigid.velocity.y);
 
         if (Input.GetKeyDown(KeyCode.Space) && grounded == true)
         {
@@ -25,7 +34,10 @@ public class Player : MonoBehaviour
             resetJumpNeeded = true;
             StartCoroutine(ResetJumpNeeded());
         }
+    }
 
+    private void CheckGrounded()
+    {
         RaycastHit2D hitInfo = Physics2D.Raycast(transform.position, Vector2.down, 0.8f, 1 << 8);
         Debug.DrawRay(transform.position, Vector2.down * 0.8f, Color.green);
 
@@ -36,8 +48,6 @@ public class Player : MonoBehaviour
                 grounded = true;
             }
         }
-
-        rigid.velocity = new Vector2(move, rigid.velocity.y);
     }
 
     private IEnumerator ResetJumpNeeded()

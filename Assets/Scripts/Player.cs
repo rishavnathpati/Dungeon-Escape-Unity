@@ -25,6 +25,10 @@ public class Player : MonoBehaviour
     {
         Movement();
         CheckGrounded();
+        if (Input.GetMouseButtonDown(0) && grounded)
+        {
+            playerAnim.Attack();
+        }
     }
 
     private void Movement()
@@ -44,6 +48,7 @@ public class Player : MonoBehaviour
         {
             rigid.velocity = new Vector2(rigid.velocity.x, jumpForce);
             grounded = false;
+            playerAnim.Jump(true);
             resetJumpNeeded = true;
             StartCoroutine(ResetJumpNeeded());
         }
@@ -74,6 +79,7 @@ public class Player : MonoBehaviour
             if (!resetJumpNeeded)
             {
                 grounded = true;
+                playerAnim.Jump(false);
             }
         }
     }

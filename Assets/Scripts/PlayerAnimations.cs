@@ -15,4 +15,14 @@ public class PlayerAnimations : MonoBehaviour
     {
         anim.SetFloat("Move", Mathf.Abs(move));
     }
+
+    public void Jump(bool jump)
+    {
+        anim.SetBool("Jumping", jump);
+    }
+
+    public void Attack()
+    {
+        anim.SetTrigger("Attack");
+    }
 }

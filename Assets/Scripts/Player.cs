@@ -11,6 +11,7 @@ public class Player : MonoBehaviour
     [SerializeField]
     private readonly float speed = 2.5f;
     private SpriteRenderer playerSprite;
+    private SpriteRenderer swordArcSprite;
 
     private PlayerAnimations playerAnim;
 
@@ -19,6 +20,7 @@ public class Player : MonoBehaviour
         rigid = GetComponent<Rigidbody2D>();
         playerAnim = GetComponent<PlayerAnimations>();
         playerSprite = GetComponentInChildren<SpriteRenderer>();
+        swordArcSprite = transform.GetChild(1).GetComponent<SpriteRenderer>();
     }
 
     private void Update()
@@ -62,10 +64,22 @@ public class Player : MonoBehaviour
         if (!faceRight)
         {
             playerSprite.flipX = false;
+            swordArcSprite.flipX = false;
+            swordArcSprite.flipY = false;
+
+            Vector3 newPos = swordArcSprite.transform.localPosition;
+            newPos.x = 1.01f;
+            swordArcSprite.transform.localPosition = newPos;
         }
         else if (faceRight)
         {
             playerSprite.flipX = true;
+            swordArcSprite.flipX = true;
+            swordArcSprite.flipY = true;
+
+            Vector3 newPos = swordArcSprite.transform.localPosition;
+            newPos.x = -1.01f;
+            swordArcSprite.transform.localPosition = newPos;
         }
     }
 
